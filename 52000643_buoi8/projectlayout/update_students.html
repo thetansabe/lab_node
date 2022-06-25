@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Students</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+    
+    <div class="container">
+
+        <form action="http://localhost:3344/students/update?_method=PUT" method="post">
+            <h1>Update a student</h1>
+            <label for="">Nhap MSSV can update</label>
+            <input type="text" name="mssv" id="mssv" class = "form-control mt-2" placeholder="MSSV: SV001">
+           
+            <label for="">Nhap thong tin can update</label>
+            <input type="text" name="hoten" id="hoten" class="form-control mt-2" placeholder="Hoten: Nguyen Van Teo">
+            <input type="text" name="lop" id="lop" class="form-control mt-2" placeholder ="Lop: 20050201">
+            <input type="text" name="khoa" id="khoa" class="form-control mt-2" placeholder="Khoa: CNTT">
+            <input type="date" name="ngaysinh" id="ngaysinh" class="form-control mt-2">
+            
+            
+            <button class="btn btn-primary mt-3">Update</button>
+        </form>
+    </div>
+
+    <!-- Optional JavaScript -->
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

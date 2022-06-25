@@ -1,0 +1,73 @@
+
+
+<div class="login_form container">
+    <h1>Dang nhap</h1>
+
+    <form action="/login" method="post">
+        <div class="form-group">
+            <label for="">Email: </label>
+            <input type="text" name="email" id="email" placeholder="Nhap email" class="form-control">
+            <span class="text-danger email_wrong-format"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="">Mat khau: </label>
+            <input type="password" name="password" id="password" placeholder="Nhap mat khau" class="form-control">
+        </div>
+
+        {{#if flash}}
+        <div class="alert alert-{{flash.type}} alert-dismissible fade show" role="alert">
+            <strong>{{flash.intro}}</strong> {{flash.message}}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {{/if}}
+
+        <button class="btn btn-success" type="submit">Dang nhap</button>
+    </form>
+      
+</div>
+
+<script>
+
+    document.querySelector('.login_form').addEventListener('submit', e => {
+        console.log('input email: ', e.target.querySelector('#email').value)
+        e.preventDefault()
+        
+        const validateEmail = (email) => {
+            return String(email)
+                .toLowerCase()
+                .match(
+                    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+                )
+        }
+
+        if(!validateEmail(e.target.querySelector('#email').value)){
+            const span = document.querySelector('.email_wrong-format')
+            span.innerHTML = 'Sai dinh dang email'
+            span.focus()
+            return
+        }
+
+        fetch('/login', {
+            'method': 'post', 
+            'headers': {'Content-Type' : 'application/json'},
+            'body': JSON.stringify({
+                email: e.target.querySelector('#email').value,
+                password: e.target.querySelector('#password').value
+            })
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data.code)
+                if(data.code == 0){
+                    window.location.href = '/product_list'
+                }
+                else{
+                    window.location.href = '/login'
+                }
+            })
+            .catch(err => console.log(err))
+    })
+</script>
